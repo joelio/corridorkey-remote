@@ -1,0 +1,1 @@
+timestamp,label,gpu,vram_gb,clip,width,height,frames,fps,codec,size_mb,upload_s,queue_delay_s,cold_start_s,model_load_s,worker_download_s,inference_s,effective_fps,worker_upload_s,download_s,wall_s,billed_s_est,rate_per_sec,cost_usd_est,hann_chunk,hann_stride,low_vram,vram_budget_gb,peak_vram_gb,outputs,job_id
