@@ -1,5 +1,7 @@
 # CorridorKey Remote (unofficial)
 
+> **Archived, October 2026.** This experiment stopped before any GPU timings were taken. The code and licence notes are left here for reference. For running CorridorKey without a local NVIDIA card, see [Related projects](#related-projects).
+
 **This is not made by, endorsed by or affiliated with Corridor Digital.** It is a free, community bridge to their open [CorridorKey 2.0](https://github.com/nikopueringer/CorridorKey2.0) model. If you can run CorridorKey locally, or you want the supported plugin, go to [corridorkey.com](https://corridorkey.com).
 
 CorridorKey 2.0 needs an NVIDIA RTX 30-series card or newer. This project lets you run it on a GPU you rent yourself on [RunPod](https://www.runpod.io) serverless, from any machine: an AMD card, Linux, an Intel Mac, a laptop. You send a clip and get the matte and foreground back.
