@@ -10,3 +10,4 @@ clips/
 results/*
 !results/timings.csv
 !results/README.md
+*.egg-info/
