@@ -1,0 +1,30 @@
+CorridorKey Remote (unofficial)
+
+This project is not made by, endorsed by or affiliated with Corridor Digital
+LLC. It builds on CorridorKey 2.0 by Corridor Digital LLC
+(https://github.com/nikopueringer/CorridorKey2.0), designed and trained by
+Zachary Harris in collaboration with Niko Pueringer and Corridor Digital.
+
+It is released under the Corridor Key Licence, Version 2.0 (see LICENSE),
+the same licence as CorridorKey 2.0, as section 5 of that licence requires.
+It is free. It must stay free.
+
+What this project changes
+-------------------------
+
+Nothing in the CorridorKey code or model. This repository does not contain
+or modify any CorridorKey source files or weights. It adds:
+
+- Dockerfile: builds a RunPod serverless image that fetches CorridorKey 2.0
+  at a pinned commit and downloads the weights with upstream's own
+  scripts/download_weights.py at build time.
+- worker/handler.py: a RunPod job handler that calls upstream's
+  load_model() and run_inference() (from corridorkey/runtime.py), moves
+  files to and from presigned URLs, and reports timings.
+- ckremote.py: a client that uploads a clip to the user's own bucket, runs
+  the job on the user's own RunPod endpoint and records timings.
+
+Nobody running this project pays us anything. Users pay RunPod and their
+storage provider directly, with their own accounts.
+
+Third-party components are listed in THIRD_PARTY_NOTICES.md.
