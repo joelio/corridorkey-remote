@@ -83,6 +83,18 @@ Each cell will record cold and warm runs: upload, cold start, model load, infere
 
 **Is it fast enough to use?** We will answer this honestly once the numbers are in.
 
+## Related projects
+
+Other ways to run CorridorKey without a local NVIDIA card, as of October 2026. Check them before you rent a GPU.
+
+- [corridorkey.cloud](https://corridorkey.cloud) ([source](https://github.com/DCRepublic/CorridorKey_web)): a hosted community render farm where you contribute GPU time to earn processing credits. Built on CorridorKey 1.
+- [gercheg/corridorkey-runpod-worker](https://github.com/gercheg/corridorkey-runpod-worker): a RunPod serverless worker for CorridorKey 1, with a prebuilt public image.
+- [CorridorKey-Runtime](https://github.com/alexandremendoncaalvaro/CorridorKey-Runtime): a native runtime and Resolve and Nuke OFX plugin built with Corridor Digital, with an experimental DirectML track for AMD and Intel cards on Windows.
+- [corridorkey-desktop](https://github.com/MarcelineVPQ/corridorkey-desktop): CorridorKey 2.0 rewritten on Rust and ONNX Runtime, about twice as fast as upstream. NVIDIA only for now, with Apple Silicon in progress.
+- [corridorkey-mlx](https://github.com/nikopueringer/corridorkey-mlx) and [CorridorKeyOpenVINO](https://github.com/daniil-lyakhov/CorridorKeyOpenVINO): ports for Apple Silicon and for Intel hardware.
+
+What this project adds: CorridorKey 2.0, on hardware you rent and control, with the timings published.
+
 ## Licence
 
 The Corridor Key Licence, Version 2.0, the same licence as CorridorKey 2.0: a variant of CC BY-NC-SA 4.0 with extra terms. See [`LICENSE`](LICENSE) (copied unchanged from upstream), [`NOTICE`](NOTICE) for what this project adds, and [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).
