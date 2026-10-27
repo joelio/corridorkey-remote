@@ -1,0 +1,41 @@
+name: image
+
+# Builds the worker image to prove the Dockerfile still works: the pip
+# resolve, the weight download, the ffmpeg encoder check and upstream's
+# checkpoint smoke test. It never pushes. The image contains CorridorKey
+# weights, which the licence does not allow us to redistribute.
+
+on:
+  push:
+    branches: [main]
+    paths: [Dockerfile, worker/**, .github/workflows/image.yml]
+  pull_request:
+    paths: [Dockerfile, worker/**, .github/workflows/image.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      # The image is around 15 GB unpacked; a stock runner has about 14 GB free.
+      - uses: jlumbroso/free-disk-space@ceedf095f4ec1a097402bc6bd80831f2e1a6fde6 # v2.0.0
+        with:
+          tool-cache: true
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Build (no push)
+        run: |
+          start=$(date +%s)
+          docker build -t ckremote-worker:ci .
+          echo "build_seconds=$(( $(date +%s) - start ))" >> "$GITHUB_STEP_SUMMARY"
+      - name: Record image size
+        run: |
+          docker image inspect ckremote-worker:ci --format '{{.Size}}' \
+            | awk '{printf "image_size_gb=%.2f\n", $1/2^30}' >> "$GITHUB_STEP_SUMMARY"
+      - name: Handler imports without a GPU
+        run: |
+          docker run --rm ckremote-worker:ci python -c \
+            "import sys; sys.path.insert(0, '/opt/ckremote'); sys.path.insert(0, '/opt/corridorkey'); import handler, runpod, corridorkey.runtime; print('ok')"
