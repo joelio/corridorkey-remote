@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ckremote"
+version = "0.1.0"
+description = "CorridorKey Remote (unofficial): run CorridorKey 2.0 on your own RunPod GPU"
+requires-python = ">=3.10"
+dependencies = ["boto3>=1.34", "requests>=2.31"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.6"]
+
+[project.scripts]
+ckremote = "ckremote:main"
+
+[tool.setuptools]
+py-modules = ["ckremote"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "S"]
+# S101 asserts in tests; S603/S607 we call ffmpeg/ffprobe by design.
+ignore = ["S101", "S603", "S607", "S110"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S105", "S106", "E701"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

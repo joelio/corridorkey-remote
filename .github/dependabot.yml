@@ -1,0 +1,12 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+  - package-ecosystem: pip
+    directory: /worker
+    schedule:
+      interval: monthly
+  # The Docker base image is pinned to torch 2.9.1 on purpose (upstream's
+  # tested version), so it is not tracked here.
